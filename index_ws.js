@@ -15,13 +15,14 @@ app.get('/',function (req,res){
 	res.send("Welcome");
 });
 
-
-
 app.get('/InsertJobSeeker', function(req, res) {
 	var firstName = req.query.person_name;
     var familyName = req.query.family_name;
-	jobSeekersManager.insertJobSeeker(firstName,familyName, function(result) {
-		console.log("result1: "+result);
+    var locations = req.query.locations;
+    var sector = req.query.sector;
+    var experience = req.query.experience;
+    console.log("experience: " + experience);
+	jobSeekersManager.insertJobSeeker(firstName,familyName,sector,locations,experience, function(result) {
 		app.set('json space', 3);
 		res.json(result);
 		}

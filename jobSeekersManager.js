@@ -7,9 +7,8 @@ function jobSeekersManager() {
 };
 
 /* jobSeekersManager prototypes*/
-jobSeekersManager.prototype.insertJobSeeker = function(firstName,familyName,callback) {
-	dao.insertUserToDB(firstName,familyName, function(result) {
-		console.log("result: " + result);
+jobSeekersManager.prototype.insertJobSeeker = function(firstName,familyName,sector,locations,experience,callback) {
+	dao.insertUserToDB(firstName,familyName,sector,locations,experience, function(result) {
 		callback(result);
 	});
 };

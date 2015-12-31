@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-exports.insertUserToDB = function(person_name,family_name,callback) {
+exports.insertUserToDB = function(person_name,family_name,sector,locations,experience,callback) {
   mongoose.connect('mongodb://dbUser:dbPass@ds037145.mongolab.com:37145/dbcvmatcher');
   var schema_job_seeker = require('./schemas').job_seeker_schema;
   var job_seeker = mongoose.model('job_seeker',schema_job_seeker);
@@ -8,11 +8,17 @@ exports.insertUserToDB = function(person_name,family_name,callback) {
 
     var singleUser = new job_seeker({
       person_name : null,
-      family_name : null
+      family_name : null,
+      sector : null,
+      locations : []
+      //experience : null
     });
-
+    console.log("locations: " + locations);
     singleUser["person_name"] = person_name;
     singleUser["family_name"] = family_name;
+    singleUser["sector"] = sector;
+   // singleUser["experience"] = experience;
+    singleUser.locations = locations;
 
     job_seeker.findOne({
       person_name : singleUser["person_name"]
